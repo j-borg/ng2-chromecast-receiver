@@ -68,13 +68,13 @@ export class CastService {
         console.log('Message [' + event.senderId + ']: ' + event.data); 
         let data = JSON.parse(event.data);
         this.name = data.name || 'Chromecast Sender';
-        this.displayText(data);
+        this.displayData(data);
         // inform all senders on the CastMessageBus of the incoming message event
         // sender message listener will be invoked
         this.messageBus.send(event.senderId, this.name);
     }
 
-    displayText(data:any) {
+    displayData(data:any) {
         this.ngZone.run(() => {
             this.messageWatch.next(data);
         });
